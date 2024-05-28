@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'io.github.mymyutils'
-version = '0.1.0'
+version = '0.1.1'
+
+java {
+    sourceCompatibility '17'
+}
 
 repositories {
     mavenCentral()
@@ -12,6 +17,17 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.mymyutils'
+            artifactId = 'hello-world'
+            version = '0.1.1'
+            from components.java
+        }
+    }
 }
 
 test {
